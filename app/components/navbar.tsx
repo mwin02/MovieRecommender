@@ -12,10 +12,10 @@ export default function NavBar() {
         Home
       </Link>
       <Link
-        className={`link ${pathName === "/movies" ? "active" : ""}`}
-        href="/movies"
+        className={`link ${pathName === "/movies/popular" ? "active" : ""}`}
+        href="/movies/popular"
       >
-        Movies
+        Popular Movies
       </Link>
       <Link
         className={`link ${pathName === "/movies/random" ? "active" : ""}`}

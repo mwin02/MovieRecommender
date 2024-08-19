@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SelectedMoviesContext } from "@/app/lib/context";
 import { BriefMovieInfo } from "@/app/lib/types";
 
@@ -12,12 +12,31 @@ const sampleMovie = {
 
 export function Providers({ children }: any) {
   const [selectedMovies, setSelectedMovies] = useState<BriefMovieInfo[] | null>(
-    [sampleMovie]
+    null
   );
 
+  useEffect(() => {
+    const storedValue = localStorage.getItem("selectedMovies");
+    if (!storedValue) {
+      setSelectedMovies([]);
+      return;
+    }
+    const movies = JSON.parse(storedValue);
+    setSelectedMovies(movies);
+  }, []);
+
   const addToSelectedMovies = (newMovie: BriefMovieInfo) => {
-    const newMovies = selectedMovies || [];
-    setSelectedMovies([...newMovies, newMovie]);
+    let newMovies = selectedMovies || [];
+    if (
+      newMovies.find(
+        (movie: BriefMovieInfo) => movie.movie_id === newMovie.movie_id
+      )
+    ) {
+      return;
+    }
+    newMovies.push(newMovie);
+    setSelectedMovies(newMovies);
+    localStorage.setItem("selectedMovies", JSON.stringify(newMovies));
   };
 
   return (

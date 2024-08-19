@@ -1,21 +1,19 @@
 "use client";
 import useSWR from "swr";
+import { useState } from "react";
+import { MovieList } from "@/app/lib/types";
 import MoviesDisplay from "@/app/components/movie_display/movie_display";
-import { useSearchParams } from "next/navigation";
-import { BriefMovieInfo, MovieList } from "@/app/lib/types";
 import { apiFetcher } from "@/app/lib/utils";
 
-export default function MovieSearch() {
-  const searchParams = useSearchParams();
-  const query = decodeURIComponent(searchParams.get("query") || "");
+export default function PopularMovies() {
+  const [page, setPage] = useState<number>(1);
   const { data, error, isLoading } = useSWR<MovieList, any, any>(
-    `/api/movie/search?query=${encodeURIComponent(query)}`,
+    `/api/movie/popular`,
     apiFetcher
   );
-
   return (
     <main>
-      <h1>Movie Results For {query}</h1>
+      <h1>Popular Movies</h1>
       <MoviesDisplay
         movieData={data}
         error={error}

@@ -2,6 +2,7 @@ import { MovieDisplayProp, BriefMovieInfo } from "@/app/lib/types";
 import { useSelectedMoviesContext } from "@/app/lib/context";
 import MoviesLoading from "@/app/components/loading";
 import Link from "next/link";
+import MoviesError from "@/app/components/error";
 
 export default function MoviesDisplay({
   movieData,
@@ -10,13 +11,14 @@ export default function MoviesDisplay({
   showAddButton,
   showRemoveButton,
 }: MovieDisplayProp) {
-  const { addToSelectedMovies } = useSelectedMoviesContext();
+  const { addToSelectedMovies, removeFromSelectedMovies } =
+    useSelectedMoviesContext();
 
   if (isLoading) {
     return <MoviesLoading />;
   }
   if (error || movieData === undefined) {
-    return "An error has occurred.";
+    return <MoviesError />;
   }
   if (movieData.count === 0) {
     return "No Movies Found";
@@ -40,6 +42,11 @@ export default function MoviesDisplay({
         {showAddButton && (
           <button onClick={() => addToSelectedMovies(movieInfo)}>
             Find Movies Like This
+          </button>
+        )}
+        {showRemoveButton && (
+          <button onClick={() => removeFromSelectedMovies(movieInfo.movie_id)}>
+            Remove Movie
           </button>
         )}
       </div>

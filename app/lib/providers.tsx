@@ -39,11 +39,23 @@ export function Providers({ children }: any) {
     localStorage.setItem("selectedMovies", JSON.stringify(newMovies));
   };
 
+  const removeFromSelectedMovies = (movieId: number) => {
+    if (!selectedMovies) {
+      return;
+    }
+    const newMovies = selectedMovies.filter(
+      (movieInfo: BriefMovieInfo) => movieInfo.movie_id !== movieId
+    );
+    setSelectedMovies(newMovies);
+    localStorage.setItem("selectedMovies", JSON.stringify(newMovies));
+  };
+
   return (
     <SelectedMoviesContext.Provider
       value={{
         selectedMovies,
         addToSelectedMovies,
+        removeFromSelectedMovies,
       }}
     >
       {children}

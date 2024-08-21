@@ -14,7 +14,7 @@ export default function Home() {
         <h2>Selected Movies</h2>
         <SelectedMovies />
       </div>
-      <Link href={"/movies/recomendation"}>
+      <Link href={"/movies/recommendation"}>
         <button>Find My Next Movie</button>
       </Link>
       <div>

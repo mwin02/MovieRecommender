@@ -1,3 +1,13 @@
+export interface MovieDetail {
+  movie_id: number;
+  original_title: string;
+  poster_path: string;
+  genres: { id: number; name: string }[];
+  overview: string;
+  release_date: Date;
+  runtime: number;
+}
+
 export interface MovieList {
   count: number;
   movies: BriefMovieInfo[];

@@ -3,13 +3,14 @@ import { useSelectedMoviesContext } from "@/app/lib/context";
 import { MovieList } from "@/app/lib/types";
 import MoviesDisplay from "@/app/components/movie_display/movie_display";
 import MoviesLoading from "@/app/components/loading";
-export default function SelectedMovies() {
+
+export default function SelectedMovies(): JSX.Element {
   const { selectedMovies } = useSelectedMoviesContext();
   if (!selectedMovies) {
-    return MoviesLoading;
+    return <MoviesLoading />;
   }
   if (selectedMovies.length == 0) {
-    return "No Movies Selected";
+    return <p>No Movies Selected</p>;
   }
   const movieData: MovieList = {
     count: selectedMovies.length,

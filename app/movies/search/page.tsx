@@ -1,18 +1,12 @@
 "use client";
-import useSWR from "swr";
 import MoviesDisplay from "@/app/components/movie_display/movie_display";
 import { useSearchParams } from "next/navigation";
-import { BriefMovieInfo, MovieList } from "@/app/lib/types";
-import { apiFetcher } from "@/app/lib/utils";
+import { useMovieSearch } from "@/app/lib/hooks";
 
 export default function MovieSearch() {
   const searchParams = useSearchParams();
   const query = decodeURIComponent(searchParams.get("query") || "");
-  const { data, error, isLoading } = useSWR<MovieList, any, any>(
-    `/api/movie/search?query=${encodeURIComponent(query)}`,
-    apiFetcher
-  );
-
+  const { data, error, isLoading } = useMovieSearch(query);
   return (
     <main>
       <h1>Movie Results For {query}</h1>

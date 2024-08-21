@@ -1,4 +1,4 @@
 // TODO::
-export default function MoviesLoading() {
-  return "Loading";
+export default function MoviesLoading(): JSX.Element {
+  return <p>Loading</p>;
 }

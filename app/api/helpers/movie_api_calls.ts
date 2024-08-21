@@ -1,4 +1,4 @@
-import { MovieList } from "@/app/lib/types";
+import { MovieDetail, MovieList } from "@/app/lib/types";
 
 const auth_key =
   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2M5MDJkYTA4YmNhZmU0ZTFkODdmZmMzOTEwNjJhYiIsIm5iZiI6MTcyMzQ0ODUzMy4xOTgwNjYsInN1YiI6IjY2YjliYzIwYWFlOTM5ZGNiNWE5MTQ0YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MVN9QRhgOSgk3gLelIY9Zp55NDQ4S2r2_JaeHuieA64";
@@ -15,6 +15,7 @@ async function queryMovie(name: string) {
   const url = `https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US&page=1`;
   try {
     const res = await fetch(url, getRequestOption);
+    console.log("fetch called");
     const json = await res.json();
     return json;
   } catch (err) {
@@ -31,6 +32,7 @@ async function queryPopularMovies(page: number) {
     let accumQuery: any | null = null;
     for (let i = startPage; i < startPage + numCalls; i++) {
       const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`;
+      console.log("fetch called");
       const res = await fetch(url, getRequestOption);
       const json = await res.json();
 
@@ -55,11 +57,31 @@ async function queryPopularMovies(page: number) {
   }
 }
 
+async function queryMovieDetails(movieId: number) {
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
+  try {
+    const res = await fetch(url, getRequestOption);
+    console.log("fetch called");
+    if (res.status != 200) {
+      return undefined;
+    }
+    const json = await res.json();
+    return json;
+  } catch (err) {
+    console.error("error:" + err);
+  }
+}
+
+function getPosterURL(poster_path: string) {
+  const baseUrl = "http://image.tmdb.org/t/p/w185";
+  return `${baseUrl}${poster_path}`;
+}
+
 function summarizeMovieQuery(queryResult: any): MovieList {
   if (queryResult["total_results"] == 0) {
     return { movies: [], count: 0 };
   }
-  const baseUrl = "http://image.tmdb.org/t/p/w185";
+
   const releasedMovies = queryResult["results"].filter(
     (movie: any) => movie.release_date != ""
   );
@@ -67,7 +89,7 @@ function summarizeMovieQuery(queryResult: any): MovieList {
     return {
       movie_id: movie["id"],
       original_title: movie["original_title"],
-      poster_path: `${baseUrl}${movie["poster_path"]}`,
+      poster_path: getPosterURL(movie["poster_path"]),
     };
   });
   return { movies: foundMovies, count: foundMovies.length };
@@ -91,13 +113,21 @@ export async function findPopularMovies(page: number) {
   return summarizeMovieQuery(queryResult);
 }
 
-export async function getMovieDetails(movieId: string) {
-  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
-  try {
-    const res = await fetch(url, getRequestOption);
-    const json = await res.json();
-    return json;
-  } catch (err) {
-    console.error("error:" + err);
+export async function getMovieDetails(
+  movieId: number
+): Promise<MovieDetail | undefined> {
+  const queryResult = await queryMovieDetails(movieId);
+  if (!queryResult) {
+    return undefined;
   }
+  const movieDetails: MovieDetail = {
+    movie_id: movieId,
+    original_title: queryResult["original_title"],
+    poster_path: getPosterURL(queryResult["poster_path"]),
+    genres: queryResult["genres"],
+    overview: queryResult["overview"],
+    release_date: queryResult["release_date"],
+    runtime: queryResult["runtime"],
+  };
+  return movieDetails;
 }

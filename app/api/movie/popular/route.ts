@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { findPopularMovies } from "@/app/api/helpers/movie_api_calls";
+export const dynamic = "force-static";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

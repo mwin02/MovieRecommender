@@ -3,6 +3,7 @@
 import { createContext, useState, useContext } from "react";
 import { SelectedMoviesContext } from "@/app/lib/context";
 import { BriefMovieInfo } from "@/app/lib/types";
+import Link from "next/link";
 import SelectedMovies from "@/app/components/home/selected_movies";
 
 export default function Home() {
@@ -13,7 +14,9 @@ export default function Home() {
         <h2>Selected Movies</h2>
         <SelectedMovies />
       </div>
-      <button>Find My Next Movie</button>
+      <Link href={"/movies/recomendation"}>
+        <button>Find My Next Movie</button>
+      </Link>
       <div>
         <h2>Next Movie</h2>
       </div>

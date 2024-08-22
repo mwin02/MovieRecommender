@@ -1,7 +1,7 @@
 "use client";
 import { useSelectedMoviesContext } from "@/app/lib/context";
 import { MovieList } from "@/app/lib/types";
-import MoviesDisplay from "@/app/components/movie_display/movie_display";
+import MoviesDisplay from "@/app/components/movie/MoviesDisplay";
 import MoviesLoading from "@/app/components/movie/Loading";
 
 export default function SelectedMovies(): JSX.Element {
@@ -17,7 +17,7 @@ export default function SelectedMovies(): JSX.Element {
     movies: selectedMovies,
   };
   return (
-    <main>
+    <>
       <MoviesDisplay
         movieData={movieData}
         error={null}
@@ -25,6 +25,6 @@ export default function SelectedMovies(): JSX.Element {
         showAddButton={false}
         showRemoveButton={true}
       />
-    </main>
+    </>
   );
 }

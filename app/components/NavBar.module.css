@@ -1,0 +1,42 @@
+.navbar {
+  box-sizing: border-box;
+  display: flex;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  width: 100%;
+  background-color: antiquewhite;
+  align-items: center;
+}
+
+.logo {
+  display: inline-block;
+  flex: 1;
+  font-size: 1rem;
+}
+
+.navlist {
+  display: flex;
+  list-style: none;
+  flex: 3;
+}
+
+.search {
+  display: block;
+  flex: 3;
+}
+
+.navlistItem {
+  margin-left: 32px;
+}
+
+.link {
+  text-decoration: none;
+  color: #1f2667;
+}
+
+.active {
+  color: #646991;
+}

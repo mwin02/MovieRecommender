@@ -1,5 +1,5 @@
 "use client";
-import MoviesDisplay from "@/app/components/movie_display/movie_display";
+import MoviesDisplay from "@/app/components/movie/MoviesDisplay";
 import { useSearchParams } from "next/navigation";
 import { useMovieSearch } from "@/app/lib/hooks";
 

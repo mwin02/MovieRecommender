@@ -1,6 +1,6 @@
 import { MovieDetailDisplayProp } from "@/app/lib/types";
 import MoviesLoading from "@/app/components/movie/Loading";
-import MoviesError from "@/app/components/Error";
+import MoviesError from "@/app/components/movie/Error";
 
 export default function MovieDetailedDisplay({
   movieInfo,

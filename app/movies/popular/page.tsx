@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-import MoviesDisplay from "@/app/components/movie_display/movie_display";
+import MoviesDisplay from "@/app/components/movie/MoviesDisplay";
 import { usePopularMovies } from "@/app/lib/hooks";
 
 export default function PopularMovies() {
-  const [page, setPage] = useState<number>(2);
+  const [page, setPage] = useState<number>(1);
   const { data, error, isLoading } = usePopularMovies(page);
   return (
     <main>

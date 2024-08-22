@@ -1,7 +1,5 @@
 "use client";
-import MoviesError from "@/app/components/Error";
-import MoviesLoading from "@/app/components/movie/Loading";
-import MoviesDisplay from "@/app/components/movie_display/movie_display";
+import MoviesDisplay from "@/app/components/movie/MoviesDisplay";
 import { useMovieRecomender } from "@/app/lib/hooks";
 
 export default function MovieRecommender({ movies }: { movies: number[] }) {

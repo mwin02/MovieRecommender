@@ -1,8 +1,4 @@
 "use client";
-
-import { createContext, useState, useContext } from "react";
-import { SelectedMoviesContext } from "@/app/lib/context";
-import { BriefMovieInfo } from "@/app/lib/types";
 import Link from "next/link";
 import SelectedMovies from "@/app/components/home/selected_movies";
 

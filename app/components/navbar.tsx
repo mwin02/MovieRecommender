@@ -3,27 +3,36 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import SearchBar from "@/app/components/SearchBar";
+import styles from "./NavBar.module.css";
 
 export default function NavBar() {
   const pathName = usePathname();
+  const links = [
+    { link: "/", name: "Home" },
+    { link: "/movies/popular", name: "Popular Movies" },
+    { link: "/movies/random", name: "Random Movie" },
+  ];
+  const NavLinkList = links.map((link, index) => {
+    return (
+      <li key={index} className={styles.navlistItem}>
+        <Link
+          className={`${styles.link} ${
+            pathName === link.link ? styles.active : ""
+          }`}
+          href={link.link}
+        >
+          {link.name}
+        </Link>
+      </li>
+    );
+  });
   return (
-    <nav>
-      <Link className={`link ${pathName === "/" ? "active" : ""}`} href="/">
-        Home
-      </Link>
-      <Link
-        className={`link ${pathName === "/movies/popular" ? "active" : ""}`}
-        href="/movies/popular"
-      >
-        Popular Movies
-      </Link>
-      <Link
-        className={`link ${pathName === "/movies/random" ? "active" : ""}`}
-        href="/movies/random"
-      >
-        Random Movie
-      </Link>
-      <SearchBar />
+    <nav className={styles.navbar}>
+      <div className={styles.logo}>
+        <h2>MovieFinder</h2>{" "}
+      </div>
+      <ul className={styles.navlist}>{NavLinkList}</ul>
+      <SearchBar styles={styles} />
     </nav>
   );
 }

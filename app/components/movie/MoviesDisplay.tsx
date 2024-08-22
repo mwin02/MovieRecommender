@@ -1,7 +1,7 @@
 import { MovieDisplayProp, BriefMovieInfo } from "@/app/lib/types";
 import { useSelectedMoviesContext } from "@/app/lib/context";
 import MoviesLoading from "@/app/components/movie/Loading";
-import MoviesError from "@/app/components/Error";
+import MoviesError from "@/app/components/movie/Error";
 import MovieBriefDisplay from "./BriefDisplay";
 
 export default function MoviesDisplay({

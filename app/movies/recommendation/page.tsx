@@ -1,5 +1,5 @@
 "use client";
-import MoviesLoading from "@/app/components/loading";
+import MoviesLoading from "@/app/components/movie/Loading";
 import MovieRecommender from "./movie_recommender";
 import { useSelectedMoviesContext } from "@/app/lib/context";
 

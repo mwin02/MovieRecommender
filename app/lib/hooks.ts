@@ -2,9 +2,9 @@ import { apiFetcher, postFetcher } from "@/app/lib/utils";
 import useSWR from "swr";
 import { MovieList, MovieDetail } from "@/app/lib/types";
 
-export const usePopularMovies = () => {
+export const usePopularMovies = (page: number) => {
   const { data, error, isLoading } = useSWR<MovieList, any, any>(
-    `/api/movie/popular`,
+    `/api/movie/popular?page=${page}`,
     apiFetcher,
     { revalidateOnFocus: false }
   );

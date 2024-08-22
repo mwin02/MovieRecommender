@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useMovieId } from "@/app/lib/hooks";
-import MovieDetailedDisplay from "../components/movie_display/detail_display";
+import MovieDetailedDisplay from "../components/movie/DetailDisplay";
 import { useEffect } from "react";
 
 export default function MovieDetails() {

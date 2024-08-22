@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import SearchBar from "@/app/components/searchbar";
+import SearchBar from "@/app/components/SearchBar";
 
 export default function NavBar() {
   const pathName = usePathname();

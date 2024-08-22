@@ -34,6 +34,12 @@ export interface MovieDisplayProp {
   showRemoveButton: boolean;
 }
 
+export interface MovieDetailDisplayProp {
+  movieInfo: MovieDetail;
+  isLoading: boolean;
+  error: any;
+}
+
 export interface SelectedMoviesContextValue {
   selectedMovies: BriefMovieInfo[] | null;
   addToSelectedMovies: (newMovie: BriefMovieInfo) => void;

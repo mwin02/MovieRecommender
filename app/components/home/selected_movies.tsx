@@ -2,7 +2,7 @@
 import { useSelectedMoviesContext } from "@/app/lib/context";
 import { MovieList } from "@/app/lib/types";
 import MoviesDisplay from "@/app/components/movie_display/movie_display";
-import MoviesLoading from "@/app/components/loading";
+import MoviesLoading from "@/app/components/movie/Loading";
 
 export default function SelectedMovies(): JSX.Element {
   const { selectedMovies } = useSelectedMoviesContext();

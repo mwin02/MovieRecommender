@@ -1,6 +1,6 @@
 "use client";
-import MoviesError from "@/app/components/error";
-import MoviesLoading from "@/app/components/loading";
+import MoviesError from "@/app/components/Error";
+import MoviesLoading from "@/app/components/movie/Loading";
 import MoviesDisplay from "@/app/components/movie_display/movie_display";
 import { useMovieRecomender } from "@/app/lib/hooks";
 

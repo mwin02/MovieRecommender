@@ -27,16 +27,19 @@ function summarizeMovieQuery(queryResult: any): MovieList {
     return { movies: [], count: 0 };
   }
 
-  const releasedMovies = queryResult["results"].filter(
+  const releasedMovies: any[] = queryResult["results"].filter(
     (movie: any) => movie.release_date != ""
   );
-  const foundMovies = releasedMovies.map((movie: any) => {
-    return {
-      movie_id: movie["id"],
-      original_title: movie["original_title"],
-      poster_path: getPosterURL(movie["poster_path"]),
-    };
-  });
+
+  const foundMovies = releasedMovies
+    .sort((movieA: any, movieB: any) => movieB.popularity - movieA.popularity)
+    .map((movie: any) => {
+      return {
+        movie_id: movie["id"],
+        original_title: movie["original_title"],
+        poster_path: getPosterURL(movie["poster_path"]),
+      };
+    });
   return { movies: foundMovies, count: foundMovies.length };
 }
 
@@ -55,11 +58,11 @@ const moviesToShow = 60;
 
 async function queryPopularMovies(page: number) {
   const numCalls = moviesToShow / 20;
-  let startPage = page * numCalls;
+  let startPage = (page - 1) * numCalls + 1;
   try {
     let accumQuery: any | null = null;
     for (let i = startPage; i < startPage + numCalls; i++) {
-      const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`;
+      const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${i}`;
       const res = await fetch(url, getRequestOption);
       const json = await res.json();
 
@@ -114,6 +117,7 @@ export async function searchMovie(name: string): Promise<MovieList> {
     return { movies: [], count: 0 };
   }
   const queryResult = await queryMovie(name);
+
   return summarizeMovieQuery(queryResult);
 }
 

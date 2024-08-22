@@ -1,7 +1,7 @@
 import { MovieDetailDisplayProp } from "@/app/lib/types";
-import MoviesLoading from "@/app/components/loading";
-import MoviesError from "@/app/components//error";
-// TODO::
+import MoviesLoading from "@/app/components/movie/Loading";
+import MoviesError from "@/app/components/Error";
+
 export default function MovieDetailedDisplay({
   movieInfo,
   error,
@@ -18,6 +18,12 @@ export default function MovieDetailedDisplay({
       <h1>{movieInfo["original_title"]}</h1>
       <p>{movieInfo["overview"]}</p>
       <img src={movieInfo["poster_path"]} alt="Poster" />
+      Genres:
+      <ul>
+        {movieInfo.genres.map(({ id, name }) => (
+          <li key={id}>{name}</li>
+        ))}
+      </ul>
     </div>
   );
 }

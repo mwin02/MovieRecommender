@@ -3,12 +3,13 @@ import Link from "next/link";
 
 export default function MovieDetailedDisplay({
   movieInfo,
+  styles,
 }: {
   movieInfo: BriefMovieInfo;
+  styles: { [key: string]: string };
 }): JSX.Element {
   return (
     <>
-      <p>{movieInfo.original_title}</p>
       <Link href={`/movies?id=${movieInfo.movie_id}`}>
         {!movieInfo.poster_path.endsWith("null") ? (
           <img
@@ -19,6 +20,9 @@ export default function MovieDetailedDisplay({
           <img src={movieInfo.poster_path} alt={`No Poster Found`} />
         )}
       </Link>
+      <div className={styles.title}>
+        <p>{movieInfo.original_title}</p>
+      </div>
     </>
   );
 }

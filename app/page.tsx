@@ -1,21 +1,15 @@
 "use client";
 import Link from "next/link";
-import SelectedMovies from "@/app/components/home/selected_movies";
+import SelectedMovies from "@/app/components/home/SelectedMovies";
 
 export default function Home() {
   return (
     <main>
-      <h1>Find My Next Movie</h1>
-      <div>
-        <h2>Selected Movies</h2>
-        <SelectedMovies />
-      </div>
       <Link href={"/movies/recommendation"}>
-        <button>Find My Next Movie</button>
+        <button className="big-button">Find My Next Movie &gt;</button>
       </Link>
-      <div>
-        <h2>Next Movie</h2>
-      </div>
+      {/* <h2>Selected Movies</h2> */}
+      <SelectedMovies />
     </main>
   );
 }

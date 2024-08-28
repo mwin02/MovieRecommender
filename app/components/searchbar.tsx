@@ -21,15 +21,22 @@ export default function SearchBar({
 
   return (
     <div className={styles.search}>
-      <label htmlFor="name">Search For a Movie</label>
-      <input
-        type="text"
-        name="movieName"
-        onChange={(e) => {
-          onTextChange(e.target.value);
-        }}
-      />
-      <button onClick={onSearchButtonClick}>Search</button>
+      <form action="/movies/search" className={styles.form}>
+        <label htmlFor="name" className={styles.label}>
+          Search For a Movie
+        </label>
+        <input
+          className={styles.input}
+          type="text"
+          name="query"
+          onChange={(e) => {
+            onTextChange(e.target.value);
+          }}
+        />
+        <button type="submit" className={styles.button}>
+          <img src="/search.svg" alt="Search" />
+        </button>
+      </form>
     </div>
   );
 }

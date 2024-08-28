@@ -18,7 +18,7 @@ const getRequestOption = {
 };
 
 function getPosterURL(poster_path: string) {
-  const baseUrl = "http://image.tmdb.org/t/p/w185";
+  const baseUrl = "http://image.tmdb.org/t/p/w342";
   return `${baseUrl}${poster_path}`;
 }
 
@@ -187,7 +187,7 @@ export async function getMovieRecomendation(
       }
       return bCount - aCount;
     })
-    .splice(0, 5)
+    .splice(0, numMovies)
     .map((idCount: [string, number]): BriefMovieInfo => {
       return movieDict[idCount[0]];
     });

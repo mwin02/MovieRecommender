@@ -29,7 +29,7 @@ export default function NavBar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <h2>MovieFinder</h2>{" "}
+        <p>MovieFinder</p>
       </div>
       <ul className={styles.navlist}>{NavLinkList}</ul>
       <SearchBar styles={styles} />

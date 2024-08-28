@@ -12,11 +12,11 @@ export default function Recomender() {
     return <p>Select Some Movies to Get a Recomendation</p>;
   }
   return (
-    <div>
+    <main>
       <h2>Movies Recommended: </h2>
       <MovieRecommender
         movies={selectedMovies.map((movie) => movie.movie_id)}
       />
-    </div>
+    </main>
   );
 }

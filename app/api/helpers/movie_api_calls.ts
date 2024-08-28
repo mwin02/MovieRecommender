@@ -4,9 +4,10 @@ import {
   MovieList,
   MovieRecomendationInfo,
 } from "@/app/lib/types";
-import { count } from "console";
 
-const auth_key = "Bearer ";
+require("dotenv").config();
+
+const auth_key = `Bearer ${process.env.API_KEY}`;
 
 const getRequestOption = {
   method: "GET",

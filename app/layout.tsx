@@ -7,8 +7,8 @@ import { Providers } from "@/app/lib/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Find my Next Movie",
-  description: "Find your next movie",
+  title: "Find My Next Movie",
+  description: "Get movie recomendations based on your favorite movies.",
 };
 
 export default function RootLayout({

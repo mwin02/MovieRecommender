@@ -2,6 +2,7 @@
 import MoviesLoading from "@/app/components/movie/Loading";
 import MovieRecommender from "./movie_recommender";
 import { useSelectedMoviesContext } from "@/app/lib/context";
+import Link from "next/link";
 
 export default function Recomender() {
   const { selectedMovies } = useSelectedMoviesContext();
@@ -9,7 +10,11 @@ export default function Recomender() {
     return <MoviesLoading />;
   }
   if (selectedMovies.length === 0) {
-    return <p>Select Some Movies to Get a Recomendation</p>;
+    return (
+      <main>
+        <p>Select some movies to get a recomendation.</p>
+      </main>
+    );
   }
   return (
     <main>

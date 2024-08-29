@@ -50,9 +50,9 @@ export default function MoviesDisplay({
   const moviesList = movieData.movies.map((movieInfo: BriefMovieInfo) => {
     return (
       <li key={movieInfo.movie_id} className={styles.movie}>
-        <MovieBriefDisplay movieInfo={movieInfo} styles={styles} />
         {showAddButton && <AddButton movieInfo={movieInfo} />}
         {showRemoveButton && <RemoveButton movieId={movieInfo.movie_id} />}
+        <MovieBriefDisplay movieInfo={movieInfo} styles={styles} />
       </li>
     );
   });

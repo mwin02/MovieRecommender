@@ -36,7 +36,7 @@ function summarizeMovieQuery(queryResult: any): MovieList {
     .map((movie: any) => {
       return {
         movie_id: movie["id"],
-        original_title: movie["original_title"],
+        original_title: movie["title"],
         poster_path: getPosterURL(movie["poster_path"]),
       };
     });
@@ -138,7 +138,7 @@ export async function getMovieDetails(
   }
   const movieDetails: MovieDetail = {
     movie_id: movieId,
-    original_title: queryResult["original_title"],
+    original_title: queryResult["title"],
     poster_path: getPosterURL(queryResult["poster_path"]),
     genres: queryResult["genres"],
     overview: queryResult["overview"],
@@ -168,7 +168,7 @@ export async function getMovieRecomendation(
         if (!movieDict.hasOwnProperty(movieId)) {
           movieDict[movieId] = {
             movie_id: movie["id"],
-            original_title: movie["original_title"],
+            original_title: movie["title"],
             poster_path: getPosterURL(movie["poster_path"]),
             popularity: movie["popularity"],
           };
